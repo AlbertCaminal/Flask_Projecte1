@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Projecte1 - Página 2</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        position: relative;
+      }
+      .nav-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+      .nav-button:hover {
+        background-color: #45a049;
+      }
+      form {
+        margin-bottom: 30px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      select, input[type="number"] {
+        padding: 8px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 300px;
+      }
+      input[type="submit"] {
+        padding: 10px 25px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        padding: 8px;
+        margin: 5px 0;
+        background-color: #f2f2f2;
+        border-left: 4px solid #4CAF50;
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #4CAF50;
+        margin-top: 30px;
+      }
+      .error-message {
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="nav-button">Página 1</a>
+    <h1>Filtro de Países</h1>
+    
+    <form action="/page2" method="post">
+      <label>
+        Variable:
+        <select name="variable" id="variable" required>
+          <option value="GDP">PIB (GDP)</option>
+          <option value="Population">Població</option>
+          <option value="Life expectancy">Esperança de vida</option>
+          <option value="Land Area(Km2)">Superfície total</option>
+        </select>
+      </label>
+      
+      <label>
+        Valor mínim:
+        <input type="number" name="min_value" id="min_value" step="any" required />
+      </label>
+      
+      <label>
+        Valor màxim:
+        <input type="number" name="max_value" id="max_value" step="any" required />
+      </label>
+      
+      <input type="submit" value="Filtrar" />
+    </form>
 
+    {% if error_message %}
+    <div class="error-message">
+      {{ error_message }}
+    </div>
+    {% endif %}
+
+    {% if filteredCountries is not none %}
+    <h2>Países encontrados ({{ filteredCountries|length }})</h2>
+    {% if filteredCountries %}
+    <ul>
+      {% for country in filteredCountries %}
+      <li>{{ country }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron países con los criterios especificados.</p>
+    {% endif %}
+    {% endif %}
+    
+  </body>
+</html>

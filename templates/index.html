@@ -9,6 +9,23 @@
         max-width: 800px;
         margin: 50px auto;
         padding: 20px;
+        position: relative;
+      }
+      .nav-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+      .nav-button:hover {
+        background-color: #45a049;
       }
       form {
         margin-bottom: 30px;
@@ -56,6 +73,7 @@
     </style>
   </head>
   <body>
+    <a href="/page2" class="nav-button">Página 2</a>
     <h1>Países</h1>
     
     <form action="/" method="post">
