@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Projecte1</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      form {
+        margin-bottom: 30px;
+      }
+      select {
+        padding: 8px;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      input[type="submit"] {
+        padding: 8px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #4CAF50;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Países</h1>
+    
+    <form action="/" method="post">
+      <label>
+        <select name="country" id="country">
+          {%for country in countries %}
+          <option value="{{ country }}">{{ country }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <input type="submit" value="GET DATA" />
+    </form>
+
+    {% if countryData %}
+    <h2>{{ countryData["Country"]}}</h2>
+    <table>
+      {% for clave, valor in countryData.items() %}
+      <tr>
+        <th>{{ clave }}</th>
+        <td>{{ valor }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+    
+  </body>
+</html>
